@@ -9,7 +9,10 @@ const Container = styled.View`
   justify-content: center;
 `;
 
-const Text = styled.Text``;
+const Text = styled.Text`
+  font-size: 20px;
+  font-weight: 700;
+`;
 
 interface IProps {
   region: string;

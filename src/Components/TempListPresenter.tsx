@@ -26,8 +26,10 @@ const ScrollView = styled.ScrollView`
   border-top-width: 1px;
 `;
 
-const Text = styled.Text`
+const Text = styled.Text<{ isNegative?: boolean }>`
   padding: 0px 16px;
+  font-size: 16px;
+  color: ${(props) => (props.isNegative !== undefined ? (props.isNegative ? 'skyblue' : 'red') : 'black')};
 `;
 
 interface IProps {
@@ -41,7 +43,9 @@ const TempListPresenter: React.FC<IProps> = ({ items }) => {
       <InnerContainer>
         <ScrollView horizontal={true} contentContainerStyle={{ alignItems: 'center' }}>
           {items.map((item: item, index) => (
-            <Text key={index + item.fcstTime}>{item.fcstValue}</Text>
+            <Text key={index + item.fcstTime} isNegative={Number(item.fcstValue) <= 0}>
+              {item.fcstValue}
+            </Text>
           ))}
         </ScrollView>
       </InnerContainer>
