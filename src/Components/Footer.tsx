@@ -16,14 +16,15 @@ const Container = styled.View`
 
 interface IProps {
   handleRegion: Function;
+  currentRegion: string;
 }
 
-const Footer: React.FC<IProps> = ({ handleRegion }) => {
+const Footer: React.FC<IProps> = ({ handleRegion, currentRegion }) => {
   return (
     <Container>
-      <FooterBtn text="부천" handleRegion={handleRegion} />
-      <FooterBtn text="서울" handleRegion={handleRegion} />
-      <FooterBtn text="충주" handleRegion={handleRegion} />
+      <FooterBtn text="bucheon" handleRegion={handleRegion} currentRegion={currentRegion} />
+      <FooterBtn text="seoul" handleRegion={handleRegion} currentRegion={currentRegion} />
+      <FooterBtn text="eumseong" handleRegion={handleRegion} currentRegion={currentRegion} />
     </Container>
   );
 };

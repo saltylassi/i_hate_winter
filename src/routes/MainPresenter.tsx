@@ -18,7 +18,7 @@ const MainPresenter = () => {
       <Header region={currentRegion} />
       <CurrentTempPresenter temperature={temperature.filter((item: item) => item.category === 'TMP')[0]} />
       <TempListPresenter items={temperature.filter((item: item) => item.category === 'TMP').slice(0, 12)} />
-      <Footer handleRegion={handleRegion} />
+      <Footer handleRegion={handleRegion} currentRegion={currentRegion} />
     </MainLayout>
   ) : (
     <MainLayout>

@@ -34,15 +34,7 @@ export const useMain = () => {
 
   const handleRegion = useCallback((text: string) => {
     setCurrentRegion(() => {
-      let region = '';
-      if (text === '부천') {
-        region = 'bucheon';
-      } else if (text === '서울') {
-        region = 'seoul';
-      } else if (text === '충주') {
-        region = 'eumseong';
-      }
-      return region;
+      return text;
     });
   }, []);
 

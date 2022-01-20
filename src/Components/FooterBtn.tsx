@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
 
-const Btn = styled.TouchableOpacity`
+const Btn = styled.TouchableOpacity<{ selected: boolean }>`
   width: 30%;
   height: 40%;
   justify-content: center;
@@ -9,6 +9,7 @@ const Btn = styled.TouchableOpacity`
   border-radius: 5px;
   border-color: gray;
   border-width: 1px;
+  background-color: ${(props) => (props.selected ? 'skyblue' : 'white')};
 `;
 
 const Text = styled.Text``;
@@ -16,16 +17,18 @@ const Text = styled.Text``;
 interface IProps {
   text: string;
   handleRegion: Function;
+  currentRegion: string;
 }
 
-const FooterBtn: React.FC<IProps> = ({ text, handleRegion }) => {
+const FooterBtn: React.FC<IProps> = ({ text, handleRegion, currentRegion }) => {
   return (
     <Btn
       onPress={() => {
         handleRegion(text);
       }}
+      selected={currentRegion === text}
     >
-      <Text>{text}</Text>
+      <Text>{{ bucheon: '부천', seoul: '서울', eumseong: '음성' }[text]}</Text>
     </Btn>
   );
 };

@@ -7,6 +7,7 @@ const Container = styled.View`
   align-items: center;
   margin-top: 30px;
   overflow: scroll;
+  background-color: white;
 `;
 
 interface IProps {
