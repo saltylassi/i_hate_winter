@@ -1,13 +1,16 @@
+import axios from 'axios';
 import { APIs } from '../utils/apis';
 import { DateFunctions } from '../utils/dateFunctions';
-import { IUtils, Utils } from '../utils/utils';
+import { IUtils, utils } from '../utils/utils';
+
+jest.mock('axios');
 
 interface ITestVariables {
   utils: IUtils;
 }
 
 const testVariables: ITestVariables = {
-  utils: new Utils(new DateFunctions(), new APIs()),
+  utils: utils,
 };
 
 describe('utils', () => {
@@ -149,6 +152,31 @@ describe('utils', () => {
 
   describe('apis', () => {
     const apis = testVariables.utils.apis;
-    describe('getTemperature', () => {});
+    describe('getTemperature', () => {
+      it('if invalidTime, throw error', async () => {
+        await expect(apis.getTemperature('1', '1', '11111111', '1')).rejects.toThrow('invalid time');
+      });
+
+      it('if invalidTime, throw error', async () => {
+        await expect(apis.getTemperature('1', '1', '1', '1111')).rejects.toThrow('invalid date');
+      });
+
+      it('if success, return json', async () => {
+        (axios.get as jest.Mock).mockImplementation(() => {
+          return { dummy: 'data' };
+        });
+        const result = await apis.getTemperature('1', '1', '11111111', '1111');
+
+        expect(result).toBeTruthy();
+      });
+
+      it('if fail, return empty object', async () => {
+        (axios.get as jest.Mock).mockImplementation(() => {
+          throw Error('dummy error');
+        });
+
+        await expect(apis.getTemperature('1', '1', '11111111', '1111')).resolves.toEqual({});
+      });
+    });
   });
 });

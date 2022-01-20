@@ -1,5 +1,5 @@
-import MainPresenter from './src/Components/MainPresenter';
+import Navigator from './src/navigators';
 
 export default function App() {
-  return <MainPresenter />;
+  return <Navigator />;
 }
