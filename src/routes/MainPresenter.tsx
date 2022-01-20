@@ -11,16 +11,12 @@ import MainLayout from '../layouts/MainLayout';
 const Temp = styled.Text``;
 
 const MainPresenter = () => {
-  const { loaded, temperature, currentRegion, handleRegion, min, max } = useMain();
+  const { loaded, temperature, currentRegion, handleRegion } = useMain();
 
   return loaded && temperature ? (
     <MainLayout>
       <Header region={currentRegion} />
-      <CurrentTempPresenter
-        temperature={temperature.filter((item: item) => item.category === 'TMP')[0]}
-        min={min}
-        max={max}
-      />
+      <CurrentTempPresenter temperature={temperature.filter((item: item) => item.category === 'TMP')[0]} />
       <TempListPresenter items={temperature.filter((item: item) => item.category === 'TMP').slice(0, 12)} />
       <Footer handleRegion={handleRegion} />
     </MainLayout>

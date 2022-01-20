@@ -16,16 +16,12 @@ const Text = styled.Text``;
 
 interface IProps {
   temperature: item;
-  min: item;
-  max: item;
 }
 
-const CurrentTempPresenter: React.FC<IProps> = ({ temperature, min, max }) => {
+const CurrentTempPresenter: React.FC<IProps> = ({ temperature }) => {
   return (
     <Container>
       <Text>//TODO 디자인</Text>
-      <Text>{min.fcstValue}</Text>
-      <Text>{max.fcstValue}</Text>
       <Text>{temperature.fcstValue}</Text>
     </Container>
   );
