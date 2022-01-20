@@ -5,7 +5,7 @@ const Container = styled.View`
   flex: 1;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 30px;
   overflow: scroll;
 `;
 

@@ -1,33 +1,31 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
 import { width } from '../assets/constants';
+import { item } from '../assets/types';
 
 const Container = styled.View`
-  flex: 5;
-  justify-content: center;
+  flex: 4;
+  justify-content: space-between;
   align-items: center;
   width: ${width}px;
+  border-color: gray;
+  border-top-width: 1px;
 `;
 
 const Text = styled.Text``;
 
 interface IProps {
-  temperature: {
-    baseDate: string;
-    baseTime: string;
-    category: string;
-    fcstDate: string;
-    fcstTime: string;
-    fcstValue: string;
-    nx: number;
-    ny: number;
-  };
+  temperature: item;
+  min: item;
+  max: item;
 }
 
-const CurrentTempPresenter: React.FC<IProps> = ({ temperature }) => {
+const CurrentTempPresenter: React.FC<IProps> = ({ temperature, min, max }) => {
   return (
     <Container>
-      <Text>//TODO 최고기온, 최저기온, 디자인, 지역명</Text>
+      <Text>//TODO 디자인</Text>
+      <Text>{min.fcstValue}</Text>
+      <Text>{max.fcstValue}</Text>
       <Text>{temperature.fcstValue}</Text>
     </Container>
   );

@@ -6,10 +6,22 @@ import { item } from '../assets/types';
 const Container = styled.View`
   flex: 5;
   width: ${width}px;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   overflow: scroll;
+  border-color: gray;
+  border-top-width: 1px;
+`;
+
+const InnerContainer = styled.View`
+  width: ${width}px;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
+`;
+
+const ScrollView = styled.ScrollView`
   border-color: gray;
   border-top-width: 1px;
 `;
@@ -25,10 +37,14 @@ interface IProps {
 const TempListPresenter: React.FC<IProps> = ({ items }) => {
   return (
     <Container>
-      <Text>//TODO 시간, 색깔, 스크롤</Text>
-      {items.map((item: item) => (
-        <Text key={item.fcstTime}>{item.fcstValue}</Text>
-      ))}
+      <Text>//TODO 디자인, 시간, 색깔</Text>
+      <InnerContainer>
+        <ScrollView horizontal={true} contentContainerStyle={{ alignItems: 'center' }}>
+          {items.map((item: item, index) => (
+            <Text key={index + item.fcstTime}>{item.fcstValue}</Text>
+          ))}
+        </ScrollView>
+      </InnerContainer>
     </Container>
   );
 };

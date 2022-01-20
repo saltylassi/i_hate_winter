@@ -6,8 +6,9 @@ import { utils } from '../utils/utils';
 export const useMain = () => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [temperature, setTemperature] = useState<{ [key: string]: Array<any> }>({});
+  const [min, setMin] = useState<any>('');
+  const [max, setMax] = useState<any>('');
   const [currentRegion, setCurrentRegion] = useState<string>('bucheon');
-
   const [baseDate, baseTime] = utils.dateFunctions.getValidTimeArgs(new Date());
 
   const positions = [
@@ -33,6 +34,16 @@ export const useMain = () => {
     getData();
   }, []);
 
+  useEffect(() => {
+    if (Object.keys(temperature).length) {
+      const min = temperature[currentRegion].filter((item: item) => item.category === 'TMN')[0];
+      const max = temperature[currentRegion].filter((item: item) => item.category === 'TMX')[0];
+
+      setMin(() => min);
+      setMax(() => max);
+    }
+  }, [currentRegion, temperature]);
+
   const handleRegion = useCallback((text: string) => {
     setCurrentRegion(() => {
       let region = '';
@@ -51,6 +62,8 @@ export const useMain = () => {
     loaded,
     temperature: temperature[currentRegion],
     currentRegion,
+    min,
+    max,
     handleRegion,
   };
 };

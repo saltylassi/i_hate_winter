@@ -15,7 +15,7 @@ export class APIs implements IAPIs {
       throw new Error('invalid time');
     }
 
-    const url = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=zPySceHXWjyPBQrkYAejlGu7cSQttFs9qZIE5AYuv9T5%2BbXDTTYgVgi7fn9ypEYLcYAYU4uy%2BQrcrfesCrWltw%3D%3D&pageNo=1&numOfRows=150&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}`;
+    const url = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=zPySceHXWjyPBQrkYAejlGu7cSQttFs9qZIE5AYuv9T5%2BbXDTTYgVgi7fn9ypEYLcYAYU4uy%2BQrcrfesCrWltw%3D%3D&pageNo=1&numOfRows=400&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}`;
 
     try {
       const response = await axios.get(url);
