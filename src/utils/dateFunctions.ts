@@ -45,7 +45,7 @@ export class DateFunctions implements IDateFunctions {
     return [this.normalizeValue(numberTypeHours.toString()) + '00', before2];
   }
 
-  getBaseDate(years: string, month: string, date: string, before2: boolean): string {
+  public getBaseDate(years: string, month: string, date: string, before2: boolean): string {
     let baseDate = '';
     const dateArray = ['31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'];
     //0201,0101

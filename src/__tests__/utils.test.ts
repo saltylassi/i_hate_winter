@@ -1,3 +1,4 @@
+import { APIs } from '../utils/apis';
 import { DateFunctions } from '../utils/dateFunctions';
 import { IUtils, Utils } from '../utils/utils';
 
@@ -6,7 +7,7 @@ interface ITestVariables {
 }
 
 const testVariables: ITestVariables = {
-  utils: new Utils(new DateFunctions()),
+  utils: new Utils(new DateFunctions(), new APIs()),
 };
 
 describe('utils', () => {
@@ -17,7 +18,8 @@ describe('utils', () => {
   });
 
   describe('DateFunctions', () => {
-    const dateFunctions = testVariables.utils.getDateFunctions();
+    const dateFunctions = testVariables.utils.dateFunctions;
+
     describe('normalize', () => {
       it('normalizeValue will return 2 length result', () => {
         const one = dateFunctions.normalizeValue('1');
@@ -143,5 +145,10 @@ describe('utils', () => {
         });
       });
     });
+  });
+
+  describe('apis', () => {
+    const apis = testVariables.utils.apis;
+    describe('getTemperature', () => {});
   });
 });

@@ -1,13 +1,16 @@
+import { IAPIs } from './apis';
 import { IDateFunctions } from './dateFunctions';
 
 export interface IUtils {
-  getDateFunctions: () => IDateFunctions;
+  dateFunctions: IDateFunctions;
+  apis: IAPIs;
 }
 
 export class Utils implements IUtils {
-  constructor(private DateFunctions: IDateFunctions) {}
-
-  public getDateFunctions() {
-    return this.DateFunctions;
+  public dateFunctions: IDateFunctions;
+  public apis: IAPIs;
+  constructor(DateFunctions: IDateFunctions, API: IAPIs) {
+    this.dateFunctions = DateFunctions;
+    this.apis = API;
   }
 }
