@@ -1,10 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
-import { width } from '../assets/constants';
 
 const Container = styled.View`
   flex: 1;
-  width: ${width}px;
+  width: 100%;
   align-items: center;
   justify-content: center;
 `;
@@ -21,7 +20,9 @@ interface IProps {
 const Header: React.FC<IProps> = ({ region }) => {
   return (
     <Container>
-      <Text>{{ bucheon: '부천', seoul: '서울', eumseong: '음성' }[region]}</Text>
+      <Text>
+        {{ bucheon: '부천시 소사구 대산동', seoul: '서울시 강남구 삼성1동', eumseong: '음성군 금왕읍' }[region]}
+      </Text>
     </Container>
   );
 };

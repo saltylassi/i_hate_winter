@@ -3,6 +3,7 @@ export interface IDateFunctions {
   normalizeValue(time: string): string;
   getBaseTime(hours: string, minutes: string): [string, boolean];
   getBaseDate(years: string, month: string, date: string, before2: boolean): string;
+  convertTimeStampToString(time: string): string;
 }
 
 export class DateFunctions implements IDateFunctions {
@@ -86,5 +87,17 @@ export class DateFunctions implements IDateFunctions {
     const baseDate = this.getBaseDate(years.toString(), month.toString(), date.toString(), before2);
 
     return [baseDate, baseTime];
+  }
+
+  public convertTimeStampToString(time: string) {
+    const numberArg = Number(time);
+
+    if (numberArg > 12) {
+      return `오후 ${(Number(time) - 12).toString().slice(0, 2)}시`;
+    } else if (numberArg === 0) {
+      return `자정`;
+    } else {
+      return `오전 ${time.slice(0, 2)}시`;
+    }
   }
 }

@@ -1,34 +1,41 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
-import { width } from '../assets/constants';
-import { item } from '../assets/types';
+import { item } from '../constants/types';
+import { utils } from '../utils/utils';
 
 const Container = styled.View`
-  flex: 5;
-  width: ${width}px;
+  flex: 3;
+  width: 100%;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  overflow: scroll;
   border-color: gray;
   border-top-width: 1px;
 `;
 
 const InnerContainer = styled.View`
-  width: ${width}px;
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   flex: 1;
 `;
 
-const ScrollView = styled.ScrollView`
-  border-color: gray;
-  border-top-width: 1px;
+const ScrollView = styled.ScrollView``;
+
+const Column = styled.View`
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Title = styled.Text`
+  opacity: 0.4;
 `;
 
 const Text = styled.Text<{ isNegative?: boolean }>`
   padding: 0px 16px;
   font-size: 16px;
+  font-weight: 700;
   color: ${(props) => (props.isNegative !== undefined ? (props.isNegative ? 'skyblue' : 'red') : 'black')};
 `;
 
@@ -39,13 +46,14 @@ interface IProps {
 const TempListPresenter: React.FC<IProps> = ({ items }) => {
   return (
     <Container>
-      <Text>//TODO 디자인, 시간, 색깔</Text>
+      <Title>금일 기온 정보 (12시간)</Title>
       <InnerContainer>
-        <ScrollView horizontal={true} contentContainerStyle={{ alignItems: 'center' }}>
+        <ScrollView horizontal={true} contentContainerStyle={{ alignItems: 'center' }} persistentScrollbar={true}>
           {items.map((item: item, index) => (
-            <Text key={index + item.fcstTime} isNegative={Number(item.fcstValue) <= 0}>
-              {item.fcstValue}
-            </Text>
+            <Column key={index + item.fcstTime}>
+              <Text>{utils.dateFunctions.convertTimeStampToString(item.fcstTime.slice(0, 2))}</Text>
+              <Text isNegative={Number(item.fcstValue) <= 0}>{item.fcstValue}°C</Text>
+            </Column>
           ))}
         </ScrollView>
       </InnerContainer>

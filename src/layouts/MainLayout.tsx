@@ -1,13 +1,18 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
+import { width } from '../constants/constants';
 
 const Container = styled.View`
   flex: 1;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
-  overflow: scroll;
+  width: ${width * 0.9}px;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 20px;
   background-color: white;
+  border: 1px solid gray;
+  border-radius: 10px;
 `;
 
 interface IProps {

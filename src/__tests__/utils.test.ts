@@ -148,6 +148,33 @@ describe('utils', () => {
         });
       });
     });
+
+    describe('convertTimeStamp', () => {
+      it('method return string', () => {
+        const value = dateFunctions.convertTimeStampToString('11');
+
+        expect(typeof value).toBe('string');
+      });
+
+      it("if args>12, returnValue includes '오후'", () => {
+        const value = dateFunctions.convertTimeStampToString('13');
+
+        expect(value.includes('오후')).toBe(true);
+      });
+
+      it("if args===0, returnValue include '자정'", () => {
+        const value = dateFunctions.convertTimeStampToString('00');
+
+        expect(value).toBe('자정');
+      });
+
+      it("if args>0 && args<12, includes '오전'", () => {
+        const value = dateFunctions.convertTimeStampToString('11');
+
+        expect(value.includes('오전')).toBe(true);
+        
+      })
+    });
   });
 
   describe('apis', () => {
@@ -176,6 +203,26 @@ describe('utils', () => {
         });
 
         await expect(apis.getTemperature('1', '1', '11111111', '1111')).resolves.toEqual({});
+      });
+    });
+  });
+
+  describe('functions', () => {
+    const functions = testVariables.utils.functions;
+    describe('getBGColor', () => {
+      it('getBGColor return string', () => {
+        const value = functions.getBGColor(11);
+        expect(typeof value).toBe('string');
+      });
+
+      it("if args>0, getBGColor return 'white'", () => {
+        const value = functions.getBGColor(1);
+        expect(value).toBe('white');
+      });
+
+      it("if args<=0, get BGColor return 'blue", () => {
+        const value = functions.getBGColor(-1);
+        expect(value).toBe('blue');
       });
     });
   });

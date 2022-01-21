@@ -1,21 +1,15 @@
 import { APIs, IAPIs } from './apis';
 import { DateFunctions, IDateFunctions } from './dateFunctions';
+import { functions, IFunctions } from './functions';
 
 export interface IUtils {
   dateFunctions: IDateFunctions;
   apis: IAPIs;
+  functions: IFunctions;
 }
 
 export const utils: IUtils = {
   dateFunctions: new DateFunctions(),
   apis: new APIs(),
+  functions: new functions(),
 };
-
-// export class Utils implements IUtils {
-//   public dateFunctions: IDateFunctions;
-//   public apis: IAPIs;
-//   constructor(DateFunctions: IDateFunctions, API: IAPIs) {
-//     this.dateFunctions = DateFunctions;
-//     this.apis = API;
-//   }
-// }

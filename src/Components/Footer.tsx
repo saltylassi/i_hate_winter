@@ -1,11 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
-import { width } from '../assets/constants';
 import FooterBtn from './FooterBtn';
 
 const Container = styled.View`
   flex: 1;
-  width: ${width}px;
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

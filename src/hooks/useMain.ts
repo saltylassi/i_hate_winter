@@ -12,7 +12,7 @@ export const useMain = () => {
   const positions = [
     ['56', '125'],
     ['61', '125'],
-    ['71', '115'],
+    ['71', '114'],
   ];
 
   useEffect(() => {
